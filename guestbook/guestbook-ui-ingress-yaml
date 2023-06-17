@@ -2,15 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
+  labels:
+    name: my-ingress
 spec:
   rules:
-    - host: localhost  # 將 your-domain.com 替換為您要使用的域名
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: guestbook-ui  # 將 your-service 替換為您要對應的 Service 名稱
-                port:
-                  number: 80  # 將 80 替換為 Service 上運行應用程式的端口
+  - host: localhost
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: guestbook-ui
+            port: 
+              number: 80
+
